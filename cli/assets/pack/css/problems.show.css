@@ -1,0 +1,93 @@
+#content > h3#title {
+    font-family: mplus-1p-bold;
+}
+
+#content > h3#title > span {
+    margin-left: 7px;
+}
+
+#content ul {
+    padding-left: 20px;
+}
+
+#content div.block {
+    margin-top: 30px;
+}
+
+#content .underline {
+    padding-left: 3px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgb(197, 219, 238);
+}
+
+#content div.sample {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#content div.paragraph {
+    padding-left: 14px;
+}
+
+#content > a#submit {
+    display: block;
+    font-family: mplus-1p-medium, serif;
+}
+
+/*スマートサブミット用隠しフォーム*/
+#source-form {
+    width: 0.1px;
+    height: 0.1px;
+    display: none;
+    position: fixed;
+    left: -1000px;
+
+    /* Windows chromeでCtrlを押すと画面が上がる問題の回避*/
+    top: 100px;
+
+}
+
+#content #solved_problem {
+    color: green;
+    font-size: 1.2em;
+}
+
+#content #rich_source {
+    width: 100%;
+    height: 350px;
+}
+
+#tag_edit , #tag_edit_not_edit{
+    cursor: pointer;
+}
+
+#tag_input{
+    display: inline-block;
+}
+
+#tag_input input{
+    width: 30em;
+}
+
+#content div.social_btn_wrapper{
+    width:280px;
+    margin:50px 50px;
+    float:left;
+}
+
+/* なんかよくわからなかったので無理やり色を変えました。*/
+#content div.social_btn_wrapper .fa-twitter:before{
+    color:#FFFFFF
+}
+
+#problem_level_suggestion{
+    width: 20em;
+    display: flex;
+    border: 1px dashed gray;
+    margin-top: 10px;
+}
+#problem_level_suggestion > div{
+    flex: 1 1 auto; /* Size of items defined inside items */
+    text-align: center;
+    padding: 6px;
+}

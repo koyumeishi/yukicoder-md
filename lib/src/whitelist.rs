@@ -1,0 +1,51 @@
+//! from https://github.com/yuki2006/mark6/blob/44604378f649ed21cc6e60daadbd7c4147433317/mark6.go#L25
+
+use maplit::{convert_args, hashmap, hashset};
+use std::collections::{HashMap, HashSet};
+
+lazy_static! {
+    pub static ref WHITELIST: HashMap<String, HashSet<String>> = convert_args!(hashmap!(
+        "a"          => convert_args!(hashset!("href", "target")),
+        "b"          => convert_args!(hashset!()),
+        "i"          => convert_args!(hashset!("class")),
+        "p"          => convert_args!(hashset!()),
+        "br"         => convert_args!(hashset!()),
+        "hr"         => convert_args!(hashset!()),
+        "h1"         => convert_args!(hashset!("class")),
+        "h2"         => convert_args!(hashset!("class")),
+        "h3"         => convert_args!(hashset!("class")),
+        "h4"         => convert_args!(hashset!("class")),
+        "h5"         => convert_args!(hashset!("class")),
+        "h6"         => convert_args!(hashset!("class")),
+        "span"       => convert_args!(hashset!("class")),
+        "details"    => convert_args!(hashset!("class")),
+        "div"        => convert_args!(hashset!("class")),
+        "font"       => convert_args!(hashset!("size", "color")),
+        "pre"        => convert_args!(hashset!()),
+        "img"        => convert_args!(hashset!("src", "alt")),
+        "ul"         => convert_args!(hashset!()),
+        "ol"         => convert_args!(hashset!()),
+        "li"         => convert_args!(hashset!()),
+        "table"      => convert_args!(hashset!("class", "border")),
+        "thead"      => convert_args!(hashset!()),
+        "tr"         => convert_args!(hashset!()),
+        "th"         => convert_args!(hashset!("data-defaultsort")),
+        "tbody"      => convert_args!(hashset!()),
+        "td"         => convert_args!(hashset!("class")),
+        "strong"     => convert_args!(hashset!()),
+        "em"         => convert_args!(hashset!()),
+        "code"       => convert_args!(hashset!()),
+        "mark"       => convert_args!(hashset!()),
+        "dl"         => convert_args!(hashset!()),
+        "dt"         => convert_args!(hashset!()),
+        "dd"         => convert_args!(hashset!()),
+        "del"        => convert_args!(hashset!()),
+        "sup"        => convert_args!(hashset!()),
+        "sub"        => convert_args!(hashset!()),
+        "summary"    => convert_args!(hashset!()),
+        "u"          => convert_args!(hashset!()),
+        "blockquote" => convert_args!(hashset!()),
+        "s"          => convert_args!(hashset!()),
+        "marquee"    => convert_args!(hashset!()),
+    ));
+}

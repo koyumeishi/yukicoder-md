@@ -1,0 +1,16 @@
+[package]
+name = "yukicoder-md"
+version = "0.1.0"
+authors = ["koyumeishi <koyumeishi+github@gmail.com>"]
+edition = "2018"
+license = "CC0-1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+yukicoder_md_lib = {version = "0.1.0" , path = "../lib"}
+clap = "2.33.3"
+rust-embed = {version = "5.9.0", features=["debug-embed", "compression"]}
+lazy_static = "1.4.0"
+log = "0.4.14"
+env_logger = "0.8.3"
