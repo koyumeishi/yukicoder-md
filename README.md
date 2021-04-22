@@ -6,14 +6,13 @@ yukicoder で使えない ([ホワイトリスト](https://github.com/yuki2006/m
 このプログラムは Rust で実装されています。
 
 # Playground
-// TODO  
-このプロジェクトを wasm でブラウザ上から使えるようにした [playground]() を用意しました。  
+このプロジェクトを wasm でブラウザ上から使えるようにした [Playground](https://koyumeishi.github.io/yukicoder-md/) を用意しました。  
 画像の自動変換等一部機能は使えません。
 
 
 # Download
 // TODO  
-ビルド済みバイナリ
+GitHub Actions で自動化してビルド済みバイナリの配布を追加したい。 
 
 
 # Installation
