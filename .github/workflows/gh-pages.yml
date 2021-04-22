@@ -48,7 +48,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       
-      - run:  yarn global add wasm-pack 
+      - run: cargo install wasm-pack 
 
       - name: build wasm
         run: wasm-pack build --release
