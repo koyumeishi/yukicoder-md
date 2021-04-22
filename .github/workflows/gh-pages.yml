@@ -39,8 +39,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      
-      - run: cargo install wasm-pack 
+
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: wasm-pack
+          version: latest
 
       - name: build wasm
         run: wasm-pack build --release

@@ -68,11 +68,11 @@ const Right: React.FC<{}> = () => {
 			<ul className="nav nav-pills">
 			    <li onClick={()=>{setPreviewMode(true);}}
 			    	className={previewMode ? "active" : ""}>
-			    	<Link href="#" scroll={false}>Preview</Link>
+			    	<Link href="#" scroll={false}><a>Preview</a></Link>
 			    </li>
 			    <li onClick={()=>{setPreviewMode(false);}}
 			    	className={previewMode ? "" : "active"}>
-			    	<Link href="#" scroll={false}>HTML</Link>
+			    	<Link href="#" scroll={false}><a>HTML</a></Link>
 			    </li>
 			</ul>
 		</div>

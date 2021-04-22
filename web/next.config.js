@@ -1,6 +1,5 @@
 require('dotenv').config();
 
 module.exports = {
-  assetPrefix: process.env.GITHUB_PAGES ? '/yukicoder-md' : '',
+  basePath: process.env.GITHUB_PAGES ? '/yukicoder-md' : '',
 };
-
