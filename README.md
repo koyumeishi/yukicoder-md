@@ -19,15 +19,14 @@ yukicoder で使えない ([ホワイトリスト](https://github.com/yuki2006/m
 # Installation
 自分でコードからビルドする場合はこちら。 rust の実行環境が必要です。 ビルドには数分の時間がかかると思います。  
 
-// TODO
 ```
-$ cargo install ...
+$ cargo install --git https://github.com/koyumeishi/yukicoder-md --branch main
 ```
 
 # Uninstallation
-// TODO
+
 ```
-$ cargo uninstall ...
+$ cargo uninstall yukicoder-md
 ```
 
 # Usage
