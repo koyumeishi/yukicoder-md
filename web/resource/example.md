@@ -1,35 +1,45 @@
 最初の "# ..." の行まで無視します。
-"# statement" => "# 問題文"
-"# input" => "# 入力"
-"# output" => "# 出力"
-"# sample" => "# サンプル"
+    "# statement" => "# 問題文"
+    "# input" => "# 入力"
+    "# output" => "# 出力"
+    "# sample" => "# サンプル"
 の様に自動で変換します。
 "# 見出し" の様にしてもかまいません。
 
+`Enable Template Engine` にチェックを入れると
+[Tera](https://tera.netlify.app/docs/#getting-started)
+が使えるようになります。
+構文に誤りがあると変換は中断されます。  
+(エラーメッセージが役に立たないので頑張って見つけて…)
+{\{ ←のバックスラッシュを外すとエラーになります }}
+
+{%set A="アリス"%}
+{%set B="ボブ"%}
+
+*問題文ここから*
 
 # statement
 マークダウン形式で問題文を記述できます。  
-[CommonMark](https://commonmark.org/) 準拠です。  
+[CommonMark](https://commonmark.org/) 準拠 + {テーブル, ~~打消し線~~}です。  
 HTMLタグも使えますが [yukicoder](https://yukicoder.me/) で使えない ([ホワイトリスト](https://github.com/yuki2006/mark6/blob/master/mark6.go#L25)にない) 要素は自動で削除されます。
-タグ内の要素はマークダウンとして認識されません。
-
-* 1
-* 2
-* 3
-
-<p>
-* 1
-* 2
-* 3
-</p>
-
 出力された HTML を yukicoder にコピペしてください。
 
-MathJax 記法も使えます。  
-(Playground では
-KaTeX で表示しているため異なる部分があります)  
+1. <font color="red">red</font> **bold**
+1. <marquee>{{A}} vs {{B}}</marquee>
+1. <blink> blink はホワイトリストにないので消されます </blink>
+
+---
+
+TeX 記法も使えます。  
+(**Playground では MathJax ではなく
+KaTeX で表示しているため表示が異なる部分があります**)  
+
 $A_i \leq 10^5$
 
+<details>
+    <summary> 🎍 </summary>
+    <font size="100">Hello!</font>
+</details>
 
 # input
 <!-- この下に入力フォーマットを記述してください。MathJaxが使えます。 -->
@@ -83,4 +93,3 @@ $M$
 0
 ```
 <!-- サンプルケース3ここまで -->
-

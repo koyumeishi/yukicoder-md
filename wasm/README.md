@@ -19,5 +19,5 @@ npm project
 ```typescript
 import {convert} from 'yukicoder_md_wasm';
 
-let html_string = convert(markdown_string);
+let html_string = convert(markdown_string, enable_template_engine);
 ```

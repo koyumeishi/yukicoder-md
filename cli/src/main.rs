@@ -101,7 +101,7 @@ fn main() {
     let result = convert(
         input,
         !args.is_present("disable-image-conversion"),
-        !args.is_present("disable-template-engine"),
+        args.is_present("enable-template-engine"),
     );
     let end_time = Instant::now();
     info!(

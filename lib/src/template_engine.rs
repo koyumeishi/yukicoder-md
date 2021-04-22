@@ -70,8 +70,16 @@ pub fn apply_template_engine(input: String) -> String {
         wrapped_import("sample-output")
     );
 
-    tera.render_str(input.as_str(), &context).unwrap()
+    match tera.render_str(input.as_str(), &context) {
+        Ok(s) => {
+            s
+        },
+        Err(s) => {
+            format!("# Error (Template Engine)\n{}", s)
+        }
+    }
 }
+
 
 #[test]
 fn template_test() {

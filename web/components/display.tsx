@@ -22,7 +22,6 @@ const Display: React.FC<{}> = () => {
 					{left: "\\(", right: "\\)", display: false},
 					{left: "\\[", right: "\\]", display: true}
 				],
-				output: "mathml",
 				ignoredTags: [
 		            'script', 'noscript', 'style', 'textarea',
 		            'code',

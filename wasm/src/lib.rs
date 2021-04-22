@@ -15,10 +15,10 @@ cfg_if::cfg_if! {
         static INIT_LOGGER: Once = Once::new();
 
         #[wasm_bindgen]
-        pub fn convert(input: String) -> String {
+        pub fn convert(input: String, use_template_engine: bool) -> String {
             INIT_LOGGER.call_once(|| {init();});
             let start_time = Instant::now();
-            let res = yukicoder_md_lib::convert(input, false, true);
+            let res = yukicoder_md_lib::convert(input, false, use_template_engine);
             let end_time = Instant::now();
             info!("conversion completed in {:?}", end_time.duration_since(start_time));
 

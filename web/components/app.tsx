@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import {Editor} from './editor';
+import {Editor, UseTemplateEngine} from './editor';
 import {Editor as DomEditor} from './dom-display';
 import {Display} from './display';
 
@@ -9,6 +9,7 @@ import {
 	atom,
 	useRecoilState,
 } from 'recoil';
+
 
 
 const PreviewMode = atom<boolean>({
@@ -26,15 +27,37 @@ export const App: React.FC<Props> = ({mdText}) => {
 	return (
 		<div className="container-fluid">
 			<div className="row">
-				<div className="col-md-6">
-					<Editor mdText={mdText}/>
-				</div>
+				<Left mdText={mdText}/>
 				<Right />
 			</div>
 		</div>
 	);
 };
 
+const TemplateEngineCheckBox: React.FC<{}> = () => {
+	const [useTemplateEngine, setUseTemplateEngine] = useRecoilState(UseTemplateEngine);
+	return (
+		<div className="checkbox">
+		    <label>
+			    <input
+			        type="checkbox"
+					checked={useTemplateEngine}
+					onChange={() => setUseTemplateEngine(!useTemplateEngine)}/>
+				Enable Template Engine (tera)
+		    </label>
+		</div>
+	);
+};
+
+
+const Left: React.FC<Props> = ({mdText}) => {
+	return (
+		<div className="col-md-6">
+			<TemplateEngineCheckBox />
+			<Editor mdText={mdText} />
+		</div>
+	);
+};
 
 
 const Right: React.FC<{}> = () => {

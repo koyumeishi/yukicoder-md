@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import AceEditor from "react-ace";
 
@@ -8,39 +8,53 @@ import "ace-builds/src-noconflict/theme-github";
 import {
 	atom,
 	selector,
-	useSetRecoilState,
+	useRecoilState,
 } from 'recoil';
 
 import {convert} from 'yukicoder_md_wasm';
+import { exception } from "node:console";
 
 
-export const editorContent = atom({
+export const EditorContent = atom({
 	key: 'editorContent',
 	default: '',
+});
+
+export const UseTemplateEngine = atom<boolean>({
+	key: 'useTemplateEngine',
+	default: false,
 });
 
 export const convertedHtml = selector({
 	key: "convertedHtml",
 	get: ({get}) => {
-		const data_md: string = get(editorContent);
-		const data_html = convert(data_md);
-		return data_html;
+		const dataMd: string = get(EditorContent);
+		const useTemplateEngine: boolean = get(UseTemplateEngine);
+		try{
+			const dataHtml = convert(dataMd, useTemplateEngine);
+			return dataHtml;
+		} catch (e) {
+			return e;
+		}
 	},
 });
 
 
-interface Props {
-	mdText: string,
-};
+export const Editor: React.FC<{mdText: string}> = ({mdText}) => {
+	const [editorContent, setEditorContent] = useRecoilState(EditorContent);
+	useEffect(() => {
+		window.addEventListener("beforeunload", (event) => {
+			event.preventDefault();
+			event.returnValue = '';
+		});
+	});
 
-export const Editor: React.FC<Props> = ({mdText}) => {
-	const setEditorContent = useSetRecoilState(editorContent);
 	return (
 		<AceEditor
 			mode="markdown"
 			theme="github"
 			width="100%"
-			height="90vh"
+			height="80vh"
 			fontSize="16"
             showPrintMargin={true}
 			showGutter={true}
