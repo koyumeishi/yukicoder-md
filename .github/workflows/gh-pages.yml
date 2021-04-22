@@ -51,6 +51,8 @@ jobs:
           yarn install
           yarn build
         working-directory: ./web
+        env:
+          GITHUB_PAGES: true
      
       - name: add nojekyll
         run: touch ./web/out/.nojekyll 
