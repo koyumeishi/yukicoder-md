@@ -25,7 +25,7 @@ function Page({mdText}) {
       <nav className="navbar navbar-inverse navbar-static-top" role="navigation">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link passHref href="#">
+            <Link passHref href="https://github.com/koyumeishi/yukicoder-md">
               <a className="navbar-brand">yukicoder-md</a>
             </Link>
           </div>
