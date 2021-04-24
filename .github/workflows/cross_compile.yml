@@ -10,7 +10,7 @@ on:
 
 jobs:
   crossbuild:
-    if: github.event.inputs.compile == 'true' && startsWith(github.ref, 'refs/tags/')
+    if: github.event.inputs.compile == 'true'
     strategy:
       matrix:
         target:
