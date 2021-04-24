@@ -1,10 +1,17 @@
 name: gh-pages
 
 # Controls when the action will run. 
-on: workflow_dispatch
+on:
+    workflow_dispatch:
+        inputs:
+            ghpages:
+                description: "Build gh-pages Flag"
+                required: true
+                default: 'false'
 
 jobs:
   build:
+    if: github.event.inputs.ghpages == 'true'
     name: build and deploy
     runs-on: ubuntu-latest
     steps:
