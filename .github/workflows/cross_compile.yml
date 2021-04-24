@@ -1,67 +1,67 @@
 name: cross-compile
 
 on:
-    workflow_dispatch:
-        inputs:
-            compile:
-                description: "Cross Compile Flag"
-                required: true
-                default: 'false'
+  workflow_dispatch:
+    inputs:
+      compile:
+        description: "Cross Compile Flag"
+        required: true
+        default: 'false'
 
 jobs:
   build:
-    if: github.event.inputs.compile == 'true'
-    if: startsWith(github.ref, 'refs/tags/')
+  if: github.event.inputs.compile == 'true'
+  if: startsWith(github.ref, 'refs/tags/')
 
-    strategy:
-        matrix:
-            target:
-                - x86_64-unknown-linux-gnu
-                - x86_64-pc-windows-gnu
+  strategy:
+    matrix:
+      target:
+        - x86_64-unknown-linux-gnu
+        - x86_64-pc-windows-gnu
+  
+  name: cross compile
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Install rust latest nightly
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly
+        target: ${{ matrix.target }}
+        override: true
+        profile: minimal
     
-    name: cross compile
-    runs-on: ubuntu-latest
-    steps:
-        - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: |
+        ~/.cargo/registry
+        ~/.cargo/git
+        target
+      key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-        - name: Install rust latest nightly
-            uses: actions-rs/toolchain@v1
-            with:
-                toolchain: nightly
-                target: ${{ matrix.target }}
-                override: true
-                profile: minimal
-      
-        - uses: actions/cache@v2
-            with:
-              path: |
-                ~/.cargo/registry
-                ~/.cargo/git
-                target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+     
+    - name: build
+      uses: actions-rs/cargo@v1
+      with:
+        use-cross: true
+        command: build
+        args: --release --target=${{ matrix.target }}
+    
+    - name: zip binary
+      - run: |
+        zip --junk-paths yukicoder-md-${{ matrix.target }} target/${{ matrix.target }}/release/yukicoder-md{,.exe}
 
-       
-        - name: build
-            uses: actions-rs/cargo@v1
-            with:
-                use-cross: true
-                command: build
-                args: --release --target=${{ matrix.target }}
-        
-        - name: zip binary
-            - run: |
-                zip --junk-paths yukicoder-md-${{ matrix.target }} target/${{ matrix.target }}/release/yukicoder-md{,.exe}
-
-        - uses: actions/upload-artifact@v1
-            with:
-                name: build-${{ matrix.target }}
-                path: yukicoder-md-${{ matrix.target }}.zip
-        
-        - name: release
-            uses: softprops/action-gh-release@v1
-            with:
-                draft: true
-                files: |
-                    yukicoder-md-${{ matrix.target }}.zip
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/upload-artifact@v1
+      with:
+        name: build-${{ matrix.target }}
+        path: yukicoder-md-${{ matrix.target }}.zip
+    
+    - name: release
+      uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        files: |
+          yukicoder-md-${{ matrix.target }}.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
