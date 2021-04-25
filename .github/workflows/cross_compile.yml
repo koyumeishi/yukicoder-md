@@ -7,6 +7,10 @@ on:
         description: "Cross Compile Flag"
         required: true
         default: 'false'
+      tag_name:
+        description: "Target Tag Name"
+        required: true
+        default: ''
 
 jobs:
   crossbuild:
@@ -21,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: github.event.inputs.tag_name
 
       - name: Install rust latest nightly
         uses: actions-rs/toolchain@v1
@@ -29,7 +35,7 @@ jobs:
           target: ${{ matrix.target }}
           override: true
           profile: minimal
-      
+
       - uses: actions/cache@v2
         with:
           path: |
@@ -37,28 +43,24 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-       
+
       - name: build
         uses: actions-rs/cargo@v1
         with:
           use-cross: true
           command: build
           args: --release --target=${{ matrix.target }}
-      
+
       - name: zip binary
         run: |
           zip --junk-paths yukicoder-md-${{ matrix.target }} target/${{ matrix.target }}/release/yukicoder-md{,.exe}
 
-      - uses: actions/upload-artifact@v1
-        with:
-          name: build-${{ matrix.target }}
-          path: yukicoder-md-${{ matrix.target }}.zip
-      
       - name: release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
           files: |
             yukicoder-md-${{ matrix.target }}.zip
+          tag_name: github.event.inputs.tag_name
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
