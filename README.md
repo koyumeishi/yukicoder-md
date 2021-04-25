@@ -85,7 +85,7 @@ example:
 
 
 # Examples
-[Examples](https://github.com/koyumeishi/yukicoder-md/tree/v0.1.0/example)
+[Examples](example/)
 
 
 # Pipeline
