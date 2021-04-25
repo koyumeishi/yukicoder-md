@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: github.event.inputs.tag_name
+          ref: ${{ github.event.inputs.tag_name }}
 
       - name: Install rust latest nightly
         uses: actions-rs/toolchain@v1
@@ -61,6 +61,6 @@ jobs:
           draft: true
           files: |
             yukicoder-md-${{ matrix.target }}.zip
-          tag_name: github.event.inputs.tag_name
+          tag_name: ${{ github.event.inputs.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
