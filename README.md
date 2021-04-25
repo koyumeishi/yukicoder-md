@@ -11,8 +11,9 @@ yukicoder で使えない ([ホワイトリスト](https://github.com/yuki2006/m
 
 
 # Download
-// TODO  
-GitHub Actions で自動化してビルド済みバイナリの配布を追加したい。 
+Windows / Linux 向けのビルド済みの実行ファイルは [Release](https://github.com/koyumeishi/yukicoder-md/releases) から入手できます。  
+Mac (動作確認できる環境がない) の方や配布している実行ファイルが動かない方は
+お手数ですが下記の方法でインストールして下さい。  
 
 
 # Installation
