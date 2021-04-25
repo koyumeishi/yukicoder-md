@@ -9,6 +9,8 @@ yukicoder で使えない ([ホワイトリスト](https://github.com/yuki2006/m
 このプロジェクトを wasm でブラウザ上から使えるようにした [Playground](https://koyumeishi.github.io/yukicoder-md/) を用意しました。  
 画像の自動変換等一部機能は使えません。
 
+![Playground の画像](fig.png)
+
 
 # Download
 Windows / Linux 向けのビルド済みの実行ファイルは [Release](https://github.com/koyumeishi/yukicoder-md/releases) から入手できます。  
@@ -80,6 +82,10 @@ example:
 `--package <DIR>` オプションを指定すると指定したディレクトリに
 完全な HTML + CSS ファイルを出力します。
 ブラウザで `<DIR>/index.html` を開くと yukicode っぽいページが表示されます。
+
+
+# Examples
+[Examples](https://github.com/koyumeishi/yukicoder-md/tree/v0.1.0/example)
 
 
 # Pipeline
