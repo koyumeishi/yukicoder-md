@@ -4,6 +4,7 @@ import type { AppProps , /*AppContext*/  } from 'next/app';
 
 import '../styles/base.css';
 import '../styles/problems.show.css';
+import '../styles/splitgrid.css';
 
 const MyApp = ({ Component, pageProps }: AppProps)  => {
   return (

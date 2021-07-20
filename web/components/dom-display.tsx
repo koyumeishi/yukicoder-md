@@ -21,7 +21,7 @@ export const Editor: React.FC<{}> = () => {
 		<AceEditor
 			mode="html"
 			theme="github"
-			width="100%"
+			width="auto"
 			height="100%"
 			fontSize="16"
             showPrintMargin={true}
