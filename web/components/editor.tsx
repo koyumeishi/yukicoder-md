@@ -53,7 +53,7 @@ export const Editor: React.FC<{mdText: string}> = ({mdText}) => {
 		<AceEditor
 			mode="markdown"
 			theme="github"
-			width="100%"
+			width="auto"
 			height="80vh"
 			fontSize="16"
             showPrintMargin={true}

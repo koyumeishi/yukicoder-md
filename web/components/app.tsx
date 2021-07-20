@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
+import Split from 'react-split-grid';
+
 import {Editor, UseTemplateEngine} from './editor';
 import {Editor as DomEditor} from './dom-display';
 import {Display} from './display';
@@ -25,11 +27,16 @@ interface Props {
 
 export const App: React.FC<Props> = ({mdText}) => {
 	return (
-		<div className="container-fluid">
-			<div className="row">
-				<Left mdText={mdText}/>
-				<Right />
-			</div>
+		<div className="">
+			<Split 
+				render={({getGridProps, getGutterProps}) => (
+					<div className="grid" {...getGridProps()}>
+						<Left mdText={mdText}/>
+						<div className="gutter-col gutter-col-1" {...getGutterProps('column', 1)} />
+						<Right />
+					</div>
+				)}
+			/>
 		</div>
 	);
 };
@@ -52,7 +59,7 @@ const TemplateEngineCheckBox: React.FC<{}> = () => {
 
 const Left: React.FC<Props> = ({mdText}) => {
 	return (
-		<div className="col-md-6">
+		<div className="sg-left">
 			<TemplateEngineCheckBox />
 			<Editor mdText={mdText} />
 		</div>
@@ -88,7 +95,7 @@ const Right: React.FC<{}> = () => {
 		</div>
 	);
 	return (
-		<div className="col-md-6">
+		<div className="sg-right">
 			{nav}
 			{content}
 		</div>

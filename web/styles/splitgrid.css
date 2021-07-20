@@ -1,0 +1,24 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 8px 1fr;
+}
+
+.gutter-col {
+    cursor: col-resize;
+    background-color: #aaa;
+}
+
+.gutter-col-1 {
+   grid-column: 2;
+}
+
+
+.sg-left {
+    grid-column: 1;
+    margin: 10px;
+}
+
+.sg-right {
+    grid-column: 3;
+    margin: 10px;
+}
